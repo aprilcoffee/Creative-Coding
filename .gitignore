@@ -1,5 +1,6 @@
 # Ignore Mac system files
 .DS_store
+*/*.pdf
 
 # hide api key
 config.py
