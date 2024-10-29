@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunrise Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="sunriseCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById("sunriseCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas size to match the viewport
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Sun properties
+        const sunRadius = 50;
+        let sunX = canvas.width / 2;
+        let sunY = canvas.height + sunRadius;
+        let sunColor = "yellow";
+
+        function drawSun() {
+            ctx.beginPath();
+            ctx.arc(sunX, sunY, sunRadius, 0, Math.PI * 2);
+            ctx.fillStyle = sunColor;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function animateSunrise() {
+            if (sunY > canvas.height / 2) {
+                requestAnimationFrame(animateSunrise);
+            }
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            sunY -= 1; // Adjust the speed by changing the value
+
+            drawSun();
+        }
+
+        animateSunrise();
+    </script>
+</body>
+</html>
